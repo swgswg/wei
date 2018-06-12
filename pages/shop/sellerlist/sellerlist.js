@@ -4,19 +4,19 @@ const URLData = require('../../../utils/data');
 Page({
     data: {
         goods_data: null,
-        this_cate_id:0,
-        this_keywords:'',
-        this_page_size:1,
-        this_page_num:10,
+        this_cate_id: 0,
+        this_keywords: '',
+        this_page_size: 1,
+        this_page_num: 10,
         glo_is_load: false,
-        list_type:true,
-        select_type:'',
-        select_jiage_type:'',
-        is_select_jiage:false,
+        list_type: true,
+        select_type: '',
+        select_jiage_type: '',
+        is_select_jiage: false,
         is_select_xiaoliang:false,
         is_loadmore: true,
         scrollTop: 0,
-        floorstatus:false,
+        floorstatus: false,
         upload_file_url: URLData.upload_file_url
     },
     goTop: function (e) {
@@ -39,9 +39,9 @@ Page({
         var that = this;
         var this_cate_id = options.cid;
         var this_keywords = options.keywords;
-        that.setData({ this_cate_id: this_cate_id, this_keywords: this_keywords});
+        that.setData({ this_cate_id: this_cate_id, this_keywords: this_keywords });
     },
-    onShow:function(){
+    onShow: function () {
         var that = this;
         var requestData = {};
         requestData.cid = that.data.this_cate_id;
@@ -87,18 +87,18 @@ Page({
         //         }
         //         that.setData({ goods_data: that.data.goods_data.concat(info), this_page_size: searchData.pagesize+1, glo_is_load: false });
         //     }
-        
+
         // }, this, { isShowLoading: false });
     },
-    select_goods_list:function(e){
+    select_goods_list: function (e) {
         var that = this;
         var s_type = e.currentTarget.dataset.stype;
         that.setData({ select_jiage_type: '' });
-        if(s_type == 'jiage'){
-            if (that.data.is_select_jiage == true){
-                that.setData({ select_jiage_type: 'jiage_sheng', is_select_jiage:false});
-            }else{
-                that.setData({ select_jiage_type: 'jiage_jiang', is_select_jiage:true});
+        if (s_type == 'jiage') {
+            if (that.data.is_select_jiage == true) {
+                that.setData({ select_jiage_type: 'jiage_sheng', is_select_jiage: false });
+            } else {
+                that.setData({ select_jiage_type: 'jiage_jiang', is_select_jiage: true });
             }
         } else if (s_type == 'xiaoliang'){
             if (that.data.is_select_xiaoliang == true) {
@@ -107,16 +107,16 @@ Page({
                 that.setData({ select_jiage_type: 'jiage_jiang', is_select_xiaoliang: true });
             }
         }
-        that.setData({ select_type: s_type, this_page_size: 1, is_loadmore:true});
+        that.setData({ select_type: s_type, this_page_size: 1, is_loadmore: true });
         that.onShow();
     },
-    toggle_list_type_bind:function(){
+    toggle_list_type_bind: function () {
         var that = this;
-        that.setData({ list_type: that.data.list_type==true?false:true});
+        that.setData({ list_type: that.data.list_type == true ? false : true });
     },
-    detail: function (e) {
+    malllist: function (e) {
         wx.navigateTo({
-            url: '../malldetail/malldetail?sid=' + e.currentTarget.id
+            url: '../malllist/malllist?sid=' + e.currentTarget.id
         })
     },
 })

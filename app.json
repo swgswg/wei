@@ -1,38 +1,41 @@
 {
-  "extEnable":true,
-  "pages":[
-    "pages/shop/mall/mall",
-    "pages/shop/bcart/index",
-    "pages/shop/mallcate/mallcate",
-    "pages/shop/malllist/malllist",
-    "pages/shop/malldetail/malldetail",
-    "pages/shop/mallquan/index",
-    "pages/shop/mallquanlist/index",
-    "pages/shop/mallquanselect/index",
-    "pages/shop/mallpeisong/index",
-    "pages/shop/mallwuliu/index",
-    "pages/shop/mallcart/mallcart",
-    "pages/shop/mallsure/mallsure",
-    "pages/shop/orderpay/index",
-    "pages/user/shop/address_list/index",
-    "pages/user/shop/address_add/index",
-    "pages/user/order/list/index",
-    "pages/user/order/info/index",
-    "pages/user/user_index/index",
-    "pages/user/user_edit/index"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#09BB07",
-    "navigationBarTitleText": "行唐商家通讯录",
-    "navigationBarTextStyle":"white"
-  },
-  "tabBar": {
-    "color":"#292929",
-    "selectedColor":"#09BB07",
-    "backgroundColor":"#fff",
-    "borderStyle":"black",
-    "list": [{
+    "extEnable":true,
+    "pages":[
+        "pages/shop/mall/mall",
+        "pages/shop/sellerlist/sellerlist",
+        "pages/shop/bcart/index",
+        "pages/shop/mallcate/mallcate",
+        "pages/shop/malllist/malllist",
+        "pages/shop/malldetail/malldetail",
+        "pages/shop/mallquan/index",
+        "pages/shop/mallquanlist/index",
+        "pages/shop/mallquanselect/index",
+        "pages/shop/mallpeisong/index",
+        "pages/shop/mallwuliu/index",
+        "pages/shop/mallcart/mallcart",
+        "pages/shop/mallsure/mallsure",
+        "pages/shop/orderpay/index",
+        "pages/user/address/address",
+        "pages/user/addressAdd/addressAdd",
+        "pages/user/order/order",
+        "pages/user/orderDetail/orderDetail",
+        "pages/user/index/index",
+        "pages/user/coupon/coupon",
+        "pages/user/express/express",
+        "pages/user/feedback/feedback"
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#09BB07",
+        "navigationBarTitleText": "微商城",
+        "navigationBarTextStyle":"white"
+    },
+    "tabBar": {
+        "color":"#292929",
+        "selectedColor":"#09BB07",
+        "backgroundColor":"#fff",
+        "borderStyle":"black",
+        "list": [{
 			  "pagePath": "pages/shop/mall/mall",
 			  "text": "商城",
 			  "iconPath":"images/tabbar/shop.png",
@@ -48,10 +51,10 @@
 			  "iconPath":"images/tabbar/shop_cart.png",
 			  "selectedIconPath":"images/tabbar/shop_cart_in.png"
 			},{
-			  "pagePath": "pages/user/user_index/index",
+			  "pagePath": "pages/user/index/index",
 			  "text": "我的",
 			  "iconPath":"images/tabbar/user.png",
 			  "selectedIconPath":"images/tabbar/user_in.png"
-			}]
-  }
+		}]
+     }
 }

@@ -7,15 +7,14 @@
 <!--mallcate.wxml-->
 <view class="cate flex flexC">
 
-  <view class="search">
+  <!-- <view class="search">
     <view class="search-box flex">
         <input class="sub search-input" type="text" placeholder="请搜索商品" confirm-type="search" bindconfirm="goods_search_bind"/>
         <button size="mini" class="search-btn"><icon type="search" size="18" /></button>
     </view>
-  </view>
+  </view> -->
 
   <view class="cate-box sub">
-    
      <scroll-view scroll-y="true" class="sidebar tc gridXt">
         <block wx:for="{{[1,2,3]}}">
             <view class="cate-name {{this_cate_id==item.id?'cate-name-active':''}} gridXb" bindtap="cate_item_bind" data-cid="tcate_{{item.id}}" id="{{item.id}}">123</view>

@@ -22,7 +22,7 @@ Page({
     },
     mall_list_bind: function (e) {
         wx.navigateTo({
-            url: '../malllist/malllist?cid=' + e.currentTarget.id
+            url: '../sellerlist/sellerlist?cid=' + e.currentTarget.id
         })
     },
     onLoad: function (options) {
