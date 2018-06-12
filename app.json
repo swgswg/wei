@@ -1,6 +1,7 @@
 {
     "extEnable":true,
     "pages":[
+        "pages/user/openshop/openshop",
         "pages/shop/mall/mall",
         "pages/shop/sellerlist/sellerlist",
         "pages/shop/bcart/index",
