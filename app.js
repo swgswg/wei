@@ -1,123 +1,75 @@
 //app.js
-var _DuoguanData = require('./utils/data.js');
+const urlData = require('./utils/urlData.js');
+const funData = require('./utils/functionMethodData.js');
+const authorize = require('./utils/authorize.js');
+
 App({
-  onLaunch: function () {
-    var local_utoken = wx.getStorageSync("utoken");
-    this.setLog(_DuoguanData.duoguan_user_token,local_utoken);
-  },
-  setLog:function(token,utoken){
-    var that=this;
-     wx.request({
-       url: _DuoguanData.duoguan_Launch_log_url,
-       data: {token:token,utoken:utoken},
-       method: 'POST', 
-       success: function(res){
-         if(res.data.success==-1){
-            that.getNewToken(function(u){
-                 that.setLog(_DuoguanData.duoguan_user_token,u);
-            })
-         }else{
-            
-         }
-       },
-       complete: function() {
-         // complete
-       }
-     })
-  },
-  onError:function(res){
-    var error_log = {}
-    error_log.e_einfo =res
-    wx.getSystemInfo({
-      success: function(res) {
-        error_log.e_sinfo = res
-      }
-    })
-    wx.request({
-      url: _DuoguanData.duoguan_error_log_url,
-      method:"POST",
-      data: {
-          msg: error_log,
-          token:_DuoguanData.duoguan_user_token,
-      }
-    })
-  },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-       var utoken=wx.getStorageSync("utoken");
-       wx.login({
-            success: function (res) {
-              var code=res.code;
-              wx.getUserInfo({
-                success: function (res) {
-                  that.globalData.userInfo = res.userInfo;
-                  wx.request({
-                    url: _DuoguanData.duoguan_auth_login_url,
-                    method:"POST",
-                    data: {
-                       utoken:utoken,
-                       code: code,
-                       token:_DuoguanData.duoguan_user_token,
-                       encryptedData:res.encryptedData,
-                       iv:res.iv
-                    },
-                    fail:function(res){
-                      
-                    },
-                    success: function(res) {
-                      var utoken=res.data.utoken;
-                      wx.setStorageSync("utoken",utoken);
-                      that.globalData.utoken=utoken;
-                      that.globalData.userInfo.utoken=utoken;
-                      typeof cb == "function" && cb(that.globalData.userInfo)
-                    }
-                  })
-                }
-              })
+    globalData: {
+        userInfo: null,
+        shopCode: '',
+        groupId: '',
+        user_id: '',
+        level: '',
+        screenWidthScale: 0.0,
+        screenHightScale: 0.0,
+        screenWidth: 0,
+        screenHight: 0,
+    },
+
+    onLaunch: function () {
+        let that = this;
+        // authorize.getOpenId(that);
+        // 登录
+        wx.login({
+            success: res => {
+                // console.log(res.code);
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                funData.mylogin(res.code, function (data) {
+                    // console.log(data.data.data);
+                    that.globalData.user_id = data.data.data.user_id;
+                    that.globalData.level = data.data.data.level;
+                    wx.setStorageSync('user_info', { user_id: data.data.data.user_id, level: data.data.data.level });
+                });
             }
-      })
-    }
-  },
-  getNewToken:function(cb){
-    var that = this
-    var utoken=wx.getStorageSync("utoken");
-      wx.login({
-        success: function (res) {
-          var code=res.code;
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo;
-              wx.request({
-                url: _DuoguanData.duoguan_auth_login_url,
-                method:"POST",
-                data: {
-                    utoken:utoken,
-                    code: code,
-                    token:_DuoguanData.duoguan_user_token,
-                    encryptedData:res.encryptedData,
-                    iv:res.iv
-                },
-                fail:function(res){
-                  //console.dir(res);
-                },
-                success: function(res) {
-                  var utoken=res.data.utoken;
-                  wx.setStorageSync("utoken",utoken);
-                  that.globalData.utoken=utoken;
-                  that.globalData.userInfo.utoken=utoken;
-                  typeof cb == "function" && cb(utoken)
+        });
+        // // 获取用户信息
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']) {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                    wx.getUserInfo({
+                        success: res => {
+                            // console.log(res);
+                            // 可以将 res 发送给后台解码出 unionId
+                            this.globalData.userInfo = res.userInfo
+
+                            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                            // 所以此处加入 callback 以防止这种情况
+                            if (this.userInfoReadyCallback) {
+                                this.userInfoReadyCallback(res);
+                                // console.log(res);
+                            }
+                        }
+                    })
                 }
-              })
             }
-          })
-        }
-    })
-  },
-  globalData:{
-    userInfo:'',
-    utoken:''
-  }
+        });
+        // this.getShopCodeByUser_id();
+
+    },
+
+    // 根据用户ID
+    // getShopCodeByUser_id: function () {
+    //     let that = this;
+    //     funData.getShopCode(that.globalData.user_id, that, (data) => {
+    //         // console.log(data);
+    //         that.globalData.shopCode = data.shop_code;
+    //     });
+
+    //     funData.getUser(that.globalData.user_id, that, (data) => {
+    //         console.log(data)
+    //         that.globalData.level = data.level;
+    //     });
+    // },
+
 })

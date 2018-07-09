@@ -1,44 +1,31 @@
-.content{
-    width: 100%;
-    height: 1205rpx;
-    padding: 20rpx;
+.shop-each{
+    width: 750rpx;
+    /* height: 150rpx;  */
+    padding: 20rpx 20rpx 0 20rpx;
     box-sizing: border-box;
     /* border: 1px solid red; */
 }
-.title{
-    font-size: 30rpx;
-}
-.from-each{
-    margin-top:20rpx;
-}
-.from-each-title{
-    font-size:30rpx;
-}
-.from-each-input{
-    width: 100%;
-    height: 100%;
-    padding-left:20rpx;
-    box-sizing: border-box; 
-    font-size:26rpx; 
-}
-input{
-    width:100%;
+.each2{
+    width: 600rpx;
     height: 70rpx;
-    border:1rpx solid #ddd;
+    margin-left: 45rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box; 
+    border: 1rpx solid #ccc;
 }
-textarea{
-    width:100%;
-    height:200rpx;
-    border:1rpx solid #aaa;
+.tel{
+    width: 380rpx;
 }
-.from-each-image{
-    width: 100%;
-    text-align: center;
+.send{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-.from-each-image image{
-    width: 700rpx;
-    height: 460rpx;
+.h35{
+    height:68rpx;
+    display: flex; 
+    align-items: center;
 }
-button{
-    margin-top:20rpx;
-}
+
+
+

@@ -37,13 +37,13 @@
                         <text>123{{item.g_name}}</text>
                     </view>
                     <view class="m-info grey f12 mt5 sub">
-                        <text>月销456{{item.sale_number}}笔</text>
+                        <text>月销{{item.sale_number}}笔</text>
                     </view>
                     <view class="good-price mt10">
                         <!-- <block wx:if="{{item.promote_status == 1}}"> -->
                             <text class="iconfont icon-cu"></text>
-                            <text class="f20">￥78{{item.promote_price}}</text>
-                            <text class="delLine">￥789{{item.shop_price}}</text>
+                            <text class="f20">￥{{item.promote_price}}</text>
+                            <text class="delLine">￥{{item.shop_price}}</text>
                         <!-- </block> -->
                         <!-- <block wx:else>
                             <block wx:if="{{item.vip_price > 0}}">

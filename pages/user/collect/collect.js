@@ -1,33 +1,61 @@
 var util = require('../../../utils/util.js');
-var api = require('../../../config/api.js');
-
-var app = getApp();
+const app = getApp()
+const utilFunctions = require('../../../utils/functionData.js');
+const URLData = require('../../../utils/data.js');
 
 Page({
   data: {
     typeId: 0,
-    collectList: []
-  },
-  getCollectList() {
-    let that = this;
-    util.request(api.CollectList, { typeId: that.data.typeId}).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          collectList: res.data.data
-        });
-      }
-    });
+    pages:1,
+    pagesize:8,
+    collectList: [],
+    upload_file_url: URLData.upload_file_url
+
   },
   onLoad: function (options) {
-    this.getCollectList();
+     this.requests()
   },
+
+  /**
+   *  请求事件
+   */
+  requests(){
+    let that= this
+    function collects(res){
+    console.log(res.PageInfo.list)
+      that.setData({
+      collectList: res.PageInfo.list
+    })
+  }
+    utilFunctions.getCollect(that.data.pages, that.data.pagesize, collects, this)
+  },
+
   onReady: function () {
 
   },
   onShow: function () {
 
   },
+  
+  /**
+   *取消收藏 
+   */ 
+  remove:function(e){
+    console.log(e)
+    let that=this
+    let shopcode = e.currentTarget.dataset.shopcode
+    function remov(res){
+      that.requests()
+      wx.showToast({
+        title: '已取消',
+        icon: 'success',
+        duration: 1200
+      })
+    }
+    utilFunctions.delectCollect(shopcode,remov,this)
+
+  },
+
   onHide: function () {
     // 页面隐藏
 

@@ -1,10 +1,10 @@
-var _function = require('../../../utils/functionData');
+// var _function = require('../../../utils/functionData');
 var app = getApp();
 Page({
   data:{
     shop_quan_info:[],
     glo_is_load:true,
-    this_quan_d_img:_function.duoguanData.duoguan_host_api_url+'/temp_pic/shop/privilege.jpg'
+    // this_quan_d_img:_function.duoguanData.duoguan_host_api_url+'/temp_pic/shop/privilege.jpg'
   },
   onLoad:function(options){
       var that = this;

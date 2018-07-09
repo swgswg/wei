@@ -1,5 +1,4 @@
 const app = getApp();
-const requestUtil = require('../../../utils/requestUtil');
 const URLData = require('../../../utils/data');
 Page({
     data: {

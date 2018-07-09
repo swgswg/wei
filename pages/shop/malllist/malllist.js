@@ -1,5 +1,4 @@
 const app = getApp();
-const requestUtil = require('../../../utils/requestUtil');
 const URLData = require('../../../utils/data');
 Page({
     data: {
@@ -35,12 +34,19 @@ Page({
             });
         }
     },
+    /*
+    ** 生命周期函数--监听页面加载
+    */
     onLoad: function (options) {
         var that = this;
         var this_cate_id = options.cid;
         var this_keywords = options.keywords;
         that.setData({ this_cate_id: this_cate_id, this_keywords: this_keywords});
     },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
     onShow:function(){
         var that = this;
         var requestData = {};
@@ -61,6 +67,10 @@ Page({
         //     that.setData({ goods_data: info, glo_is_load: false });
         // }, this, { isShowLoading: false });
     },
+    
+    /**
+     * 页面上拉触底事件的处理函数
+     */
     onReachBottom: function (e) {
         var that = this;
         wx.showNavigationBarLoading();

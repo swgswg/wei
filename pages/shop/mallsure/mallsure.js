@@ -1,5 +1,5 @@
 // mallcart.js
-var _function = require('../../../utils/functionData');
+// var _function = require('../../../utils/functionData');
 var app = getApp()
 Page({
     data:{

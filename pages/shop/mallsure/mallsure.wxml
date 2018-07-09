@@ -7,7 +7,7 @@
 <form bindsubmit="order_formSubmit" report-submit="true">
 <view class="mallsure">
     <view class="mallsure-content">
-        <block wx:for="{{cart_list}}">
+        <block wx:for="{{cart_list}}" wx:key="{{index}}" >
         <view class="sure-item flex">
             <image src="{{item.goods_img}}" mode="aspectFill"  class="sure-img"></image>
             <view class="sure-info sub">

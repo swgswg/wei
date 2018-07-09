@@ -24,7 +24,7 @@ page{
 }
 
 .address-list .l{
-    width: 125rpx;
+    width: 80rpx;
     height: 80rpx;
     overflow: hidden;
 }
@@ -32,7 +32,7 @@ page{
 .address-list .name{
     width: 125rpx;
     height: 43rpx;
-    font-size: 29rpx;
+    font-size: 20rpx;
     color: #333;
     margin-bottom: 5.2rpx;
         text-overflow: ellipsis;

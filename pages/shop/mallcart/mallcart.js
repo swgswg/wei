@@ -1,6 +1,9 @@
 // mallcart.js
-var _function = require('../../../utils/functionData');
-var app = getApp()
+const app = getApp()
+const utilFunctions = require('../../../utils/functionData.js');
+const URLData = require('../../../utils/data.js');
+const template = require('../../../template/template.js');
+// var app = getApp()
 Page({
     data:{
         cart_list:[],
@@ -25,10 +28,13 @@ Page({
           url: '../mallsure/mallsure'
         })
     },
-    onShow:function(options){
+    onLoad: function (options) {
         var that = this
         //请求购物车信息
-        // _function.getCartList(wx.getStorageSync("utoken"),that.initgetCartListData,this)
+        function cart(res){
+          console.log(res)
+        }
+        utilFunctions.getGoodsCart(cart,this)
     },
     initgetCartListData:function(data){
       var that = this
